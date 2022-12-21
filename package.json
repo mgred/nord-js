@@ -1,0 +1,45 @@
+{
+  "name": "nord-js",
+  "version": "0.0.1",
+  "description": "A Nord theme port for JavaScript/TypeScript",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "es2015": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "./dist/*",
+    "index.ts"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mgred/nord-js.git"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts",
+      "browser": "./dist/index.js",
+      "default": "./dist/index.mjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "concurrently \"npm:build:*\"",
+    "build:esm": "esbuild index.ts --format=esm --outfile=./dist/index.mjs",
+    "build:cjs": "esbuild index.ts --format=cjs --outfile=./dist/index.cjs",
+    "build:web": "esbuild index.ts --format=iife --outfile=./dist/index.js",
+    "build:types": "tsc --project .",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "nord"
+  ],
+  "author": "Marc Redemske <dev@mgred.dev>",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^7.6.0",
+    "esbuild": "^0.16.9",
+    "typescript": "^4.9.4"
+  }
+}
